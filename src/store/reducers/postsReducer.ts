@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IPost } from "../../models/IPost";
+import { IPost, IReaction } from "../../models/IPost";
 
 interface PostsState {
     isLoading: boolean,
@@ -28,9 +28,39 @@ const postsReducer = createSlice({
         setPosts(state, action: PayloadAction<IPost[]>) {
             state.posts = action.payload;
         },
+
+        setReaction(state, action: PayloadAction<IReaction>) {
+            const { id, reaction } = action.payload;
+
+            state.posts = state.posts.map(post => 
+                post.id === id 
+                    ? {...post, reaction: reaction!}
+                    : post
+            ) 
+        },
+
+        setLike(state, action: PayloadAction<IReaction>) {
+            const { id, like } = action.payload;
+
+            state.posts = state.posts.map(post => 
+                post.id === id 
+                    ? {...post, like: like!}
+                    : post
+            ) 
+        },
+
+        setDislike(state, action: PayloadAction<IReaction>) {
+            const { id, dislike } = action.payload;
+
+            state.posts = state.posts.map(post => 
+                post.id === id 
+                    ? {...post, dislike: dislike!}
+                    : post
+            ) 
+        }
     }
 })
 
 
-export const { setError, setIsLoading, setPosts} = postsReducer.actions
+export const { setError, setIsLoading, setPosts, setReaction, setDislike, setLike} = postsReducer.actions
 export default postsReducer.reducer

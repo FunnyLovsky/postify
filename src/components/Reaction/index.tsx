@@ -1,50 +1,31 @@
-import { useState } from 'react'
+import { FC } from 'react'
 import styles from './style.module.scss'
 import { BiSolidLike, BiSolidDislike } from 'react-icons/bi'
-import { getRandom } from '../../utils/getRandom'
+import { useActions } from '../../store/hooks'
+import { IPost } from '../../models/IPost'
 
-type TReact = 'like' | 'dislike' | null
 
-const Reactions = () => {
-    const [like, setLike] = useState(getRandom(0, 50))
-    const [dislike, setDislike] = useState(getRandom(0, 50))
-    const [reaction, setReaction] = useState<TReact>(null)
+interface IProps {
+    post: IPost
+}
 
-    const onReactHandler = (type: TReact) => {
-        if (type === reaction) {
-            setReaction(null)
-
-            type === 'like'
-                ? setLike((prev) => prev - 1)
-                : setDislike((prev) => prev - 1)
-        } else {
-            setReaction(type)
-
-            type === 'like'
-                ? setLike((prev) => prev + 1)
-                : setDislike((prev) => prev + 1)
-
-            if (reaction) {
-                reaction === 'like'
-                    ? setLike((prev) => prev - 1)
-                    : setDislike((prev) => prev - 1)
-            }
-        }
-    }
+const Reactions: FC<IProps> = ({post}) => {
+    const {onReactHandler} = useActions();
+    const {id, dislike, like, reaction} = post
 
     return (
         <div className={styles.cont}>
             <div className={styles.like}>
                 <BiSolidLike
                     style={{ color: reaction === 'like' ? '#219653' : '' }}
-                    onClick={() => onReactHandler('like')}
+                    onClick={() => onReactHandler('like', id)}
                 />
                 <p>{like}</p>
             </div>
             <div className={styles.dislike}>
                 <BiSolidDislike
                     style={{ color: reaction === 'dislike' ? '#EB5757' : '' }}
-                    onClick={() => onReactHandler('dislike')}
+                    onClick={() => onReactHandler('dislike', id)}
                 />
                 <p>{dislike}</p>
             </div>

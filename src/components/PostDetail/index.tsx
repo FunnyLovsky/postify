@@ -8,7 +8,7 @@ const PostDetail = () => {
         <Container>
             <div className={styles.header}>
                 <Button type="back" />
-                <Reactions />
+                {/* <Reactions post={}/> */}
             </div>
         </Container>
     )
