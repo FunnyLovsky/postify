@@ -9,7 +9,8 @@ interface IProps {
 }
 
 const Button: FC<IProps> = ({ type, id }) => {
-    const link = type === 'next' ? `${RoutesName.POST}?id=${id}` : RoutesName.MAIN
+    const link =
+        type === 'next' ? `${RoutesName.POST}?id=${id}` : RoutesName.MAIN
     return (
         <NavLink to={link} className={styles[type]}>
             {type === 'next' ? 'Читать далее' : 'Вернуться к статьям'}

@@ -1,15 +1,13 @@
-import { FC } from 'react'
 import styles from './style.module.scss'
-import { IPost } from '../../models/IPost'
 import Post from '../Post'
+import { useAppSelector } from '../../store/hooks'
 
-interface IProps {
-    posts?: IPost[]
-}
-const PostList: FC<IProps> = ({ posts }) => {
+const PostList = () => {
+    const { posts } = useAppSelector((state) => state.postReducer)
+
     return (
         <div className={styles.list}>
-            {posts!.map((post, index) => (
+            {posts.map((post, index) => (
                 <Post
                     key={post.id}
                     post={post}

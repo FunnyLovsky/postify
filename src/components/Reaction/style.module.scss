@@ -1,0 +1,46 @@
+.cont {
+    display: flex;
+    align-items: center;
+
+    & div {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+
+        & svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+            color: #3a35418a;
+            transition: 0.3s;
+            cursor: pointer;
+
+            &:active {
+                transform: scale(0.7);
+            }
+        }
+
+        & p {
+            margin: 0;
+            font-size: 16px;
+            user-select: none;
+        }
+    }
+}
+
+.like {
+    margin-right: 15px;
+
+    & svg {
+        &:hover {
+            color: #219653;
+        }
+    }
+}
+
+.dislike svg {
+    &:hover {
+        color: #eb5757;
+    }
+}
