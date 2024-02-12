@@ -1,0 +1,52 @@
+.post {
+    border-radius: 12px;
+    box-shadow: 0px 10px 20px 0px #00000023;
+    overflow: hidden;
+
+    & .img {
+        width: 100%;
+    }
+}
+
+.cont {
+    padding: 24px 16px;
+    & h3 {
+        font-size: 28px;
+    }
+
+    & p {
+        text-align: justify;
+        font-size: 24px;
+        margin-bottom: 32px;
+    }
+}
+
+.big {
+    width: 100%;
+
+    & .title {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+    }
+}
+
+.small {
+    width: 48.5%;
+}
+
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.reactions {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+}
