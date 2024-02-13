@@ -2,14 +2,11 @@
     border-radius: 12px;
     box-shadow: 0px 10px 20px 0px #00000023;
     overflow: hidden;
-
-    & .img {
-        width: 100%;
-    }
 }
 
 .cont {
     padding: 24px 16px;
+
     & h3 {
         font-size: 28px;
     }
@@ -31,40 +28,15 @@
         align-items: center;
         margin-bottom: 32px;
     }
-
-    & .img_cont {
-        width: 100%;
-        overflow: hidden;
-        height: 600px;
-    }
 }
 
 .small {
     width: 48.5%;
-
-    & .img_cont {
-        overflow: hidden;
-        width: 100%;
-        height: 300px;
-    }
 }
 
 .footer {
     display: flex;
     justify-content: flex-end;
-}
-
-.img_cont {
-    position: relative;
-}
-
-.loader {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #ccc;
-    transition: 0.3s;
-    animation: load 2s ease-in-out infinite;
 }
 
 .reactions {
@@ -73,16 +45,4 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 24px;
-}
-
-@keyframes load {
-    0% {
-        background: #ccc;
-    }
-    50% {
-        background: #a3a3a3;
-    }
-    100% {
-        background: #ccc;
-    }
 }

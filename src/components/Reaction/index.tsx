@@ -4,17 +4,17 @@ import { BiSolidLike, BiSolidDislike } from 'react-icons/bi'
 import { useActions } from '../../store/hooks'
 import { IPost } from '../../models/IPost'
 
-
 interface IProps {
-    post: IPost
+    post: IPost,
+    isLoading?: boolean
 }
 
-const Reactions: FC<IProps> = ({post}) => {
-    const {onReactHandler} = useActions();
-    const {id, dislike, like, reaction} = post
+const Reactions: FC<IProps> = ({ post, isLoading }) => {
+    const { onReactHandler } = useActions()
+    const { id, dislike, like, reaction } = post
 
     return (
-        <div className={styles.cont}>
+        <div className={styles.cont} style={{opacity: isLoading ? '0' : '1'}}>
             <div className={styles.like}>
                 <BiSolidLike
                     style={{ color: reaction === 'like' ? '#219653' : '' }}

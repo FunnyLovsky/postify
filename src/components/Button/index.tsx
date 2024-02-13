@@ -9,13 +9,25 @@ interface IProps {
 }
 
 const Button: FC<IProps> = ({ type, id }) => {
-    const link =
-        type === 'next' ? `${RoutesName.MAIN}post/${id}` : RoutesName.MAIN
-    return (
-        <NavLink to={link} className={styles[type]}>
-            {type === 'next' ? 'Читать далее' : 'Вернуться к статьям'}
-        </NavLink>
-    )
+    const handleClick = () => {
+        window.history.back()
+    }
+
+    const component =
+        type === 'next' ? (
+            <NavLink
+                to={`${RoutesName.MAIN}post/${id}`}
+                className={styles[type]}
+            >
+                Читать далее
+            </NavLink>
+        ) : (
+            <button className={styles[type]} onClick={handleClick}>
+                Вернуться к статьям
+            </button>
+        )
+
+    return component
 }
 
 export default Button

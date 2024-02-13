@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IPost, IReaction } from "../../models/IPost";
+import { IPost, IReaction } from "../../../models/IPost";
 
 interface PostsState {
     isLoading: boolean,

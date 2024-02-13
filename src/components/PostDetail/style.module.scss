@@ -4,3 +4,26 @@
     width: 100%;
     align-items: center;
 }
+
+.block {
+    & h3 {
+        font-size: 40px;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 32px;
+    }
+}
+
+.cont {
+    width: 848px;
+    margin: 0 auto;
+
+    & div {
+        height: 447px;
+        margin: 48px 0;
+    }
+
+    & p {
+        font-size: 18px;
+    }
+}

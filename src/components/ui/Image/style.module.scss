@@ -1,0 +1,39 @@
+.cont {
+    width: 100%;
+
+    position: relative;
+
+    & .img {
+        width: 100%;
+    }
+}
+
+.big {
+    height: 600px;
+}
+
+.small {
+    height: 273px;
+}
+
+.loader {
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+    transition: 0.3s;
+    animation: load 2s ease-in-out infinite;
+}
+
+@keyframes load {
+    0% {
+        background: #ccc;
+    }
+    50% {
+        background: #a3a3a3;
+    }
+    100% {
+        background: #ccc;
+    }
+}

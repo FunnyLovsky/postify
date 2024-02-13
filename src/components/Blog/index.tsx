@@ -5,29 +5,32 @@ import Search from '../Search'
 import Container from '../ui/Container'
 import styles from './style.module.scss'
 import { IPost } from '../../models/IPost'
+import Loader from '../ui/Loader'
 
 const Blog = () => {
-    const { posts, isLoading, error } = useAppSelector((state) => state.postReducer);
-    const [value, setValue] = useState('');
-    const [searchPosts, setSeacrchPosts] = useState<IPost[]>([]);
+    const { posts, isLoading, error } = useAppSelector(
+        (state) => state.postReducer,
+    )
+    const [value, setValue] = useState('')
+    const [searchPosts, setSeacrchPosts] = useState<IPost[]>([])
 
     useEffect(() => {
         setSeacrchPosts(posts)
     }, [posts])
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const title = e.target.value;
+        const title = e.target.value
 
-        setValue(title);
+        setValue(title)
 
-        if(title.trim() === '') {
+        if (title.trim() === '') {
             setSeacrchPosts(posts)
         } else {
             setSeacrchPosts([
                 ...posts.filter(
                     (post) =>
                         post.title.toLowerCase().slice(0, title.length) ===
-                        title.toLowerCase()
+                        title.toLowerCase(),
                 ),
             ])
         }
@@ -41,12 +44,13 @@ const Blog = () => {
                 про IT, а также переводим зарубежные статьи
             </p>
 
-            <Search value={value} onChange={onChangeHandler}/>
+            <Search value={value} onChange={onChangeHandler} />
 
-            {!isLoading 
-                ? <PostList searchPosts={searchPosts}/>
-                : <h1>Загрузка постов...</h1>
-            }
+            {!isLoading ? (
+                <PostList searchPosts={searchPosts} />
+            ) : (
+                <Loader type='big'/>
+            )}
 
             {error && <h1>{error}</h1>}
         </Container>

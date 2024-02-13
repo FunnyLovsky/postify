@@ -1,19 +1,19 @@
-import { AppDispatch, RootState } from ".."
-import { IPost, TReact } from "../../models/IPost";
-import { generateUrlImage } from "../../utils/generateUrlImage";
-import { getRandom } from "../../utils/getRandom";
-import { PostsService } from "../api/PostsService";
+import { AppDispatch, RootState } from "../.."
+import { IPost, TReact } from "../../../models/IPost";
+import { generateUrlImage } from "../../../utils/generateUrlImage";
+import { getRandom } from "../../../utils/getRandom";
+import { PostsService } from "../../api/PostsService";
 import { setError, setIsLoading, setPosts, setDislike, setLike, setReaction } from "./postsReducer";
 
 const fetchPosts = () => async (dispatch: AppDispatch) => {
     try {
         const response: IPost[] = await PostsService.fetchPosts();
-        const posts = response.map(item => ({
+        const posts = response.map((item, index) => ({
             ...item,
             dislike: getRandom(0, 50),
             like: getRandom(0, 50),
             reaction: null,
-            img: generateUrlImage(item.title)
+            img: generateUrlImage(item.title, index)
         }));
         
         dispatch(setPosts(posts))

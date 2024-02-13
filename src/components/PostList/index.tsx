@@ -4,17 +4,15 @@ import { IPost } from '../../models/IPost'
 import { FC } from 'react'
 
 interface IProps {
-    searchPosts: IPost[],
+    searchPosts: IPost[]
 }
 
-const PostList: FC<IProps> = ({searchPosts}) => {
-
+const PostList: FC<IProps> = ({ searchPosts }) => {
     return (
         <div className={styles.list}>
-            {searchPosts.length === 0 
-                ? 
+            {searchPosts.length === 0 ? (
                 <h1>Ничего не найдено :(</h1>
-                :
+            ) : (
                 searchPosts.map((post, index) => (
                     <Post
                         key={post.id}
@@ -22,7 +20,7 @@ const PostList: FC<IProps> = ({searchPosts}) => {
                         type={index === 0 ? 'big' : 'small'}
                     />
                 ))
-            }
+            )}
         </div>
     )
 }
