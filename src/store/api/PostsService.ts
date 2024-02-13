@@ -17,7 +17,7 @@ export class PostsService {
         }
     }
 
-    static async fetchDetailPost(id: string) {
+    static async fetchDetailPost(id: number) {
         try {
             const response = await fetch(`${URL_API}?id=${id}`);
 

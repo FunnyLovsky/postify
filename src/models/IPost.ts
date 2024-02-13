@@ -2,7 +2,7 @@ export interface IPost {
     title: string
     body: string,
     img: string,
-    id: string,
+    id: number,
     like: number,
     dislike: number,
     reaction: TReact
@@ -10,7 +10,7 @@ export interface IPost {
 
 
 export interface IReaction {
-    id: string,
+    id: number,
     like?: number,
     dislike?: number,
     reaction?: TReact

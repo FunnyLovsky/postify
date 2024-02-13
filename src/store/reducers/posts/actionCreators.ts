@@ -3,6 +3,7 @@ import { IPost, TReact } from "../../../models/IPost";
 import { generateUrlImage } from "../../../utils/generateUrlImage";
 import { getRandom } from "../../../utils/getRandom";
 import { PostsService } from "../../api/PostsService";
+import { setPost } from "../detailPost/detailPostReducer";
 import { setError, setIsLoading, setPosts, setDislike, setLike, setReaction } from "./postsReducer";
 
 const fetchPosts = () => async (dispatch: AppDispatch) => {
@@ -25,8 +26,9 @@ const fetchPosts = () => async (dispatch: AppDispatch) => {
     }
 }
 
-const onReactHandler = (type: TReact, id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
+const onReactHandler = (type: TReact, id: number) => (dispatch: AppDispatch, getState: () => RootState) => {
     const {reaction, like, dislike} = getState().postReducer.posts.find(post => post.id === id)!;
+    const detailPost = getState().detailPostReducer.post
 
     if (type === reaction) {
         dispatch(setReaction({id, reaction: null}))
@@ -45,9 +47,12 @@ const onReactHandler = (type: TReact, id: string) => (dispatch: AppDispatch, get
                 : dispatch(setDislike({id, dislike: dislike - 1}))
         }
     }
+
+    if(id === detailPost.id) {
+        const {reaction, like, dislike} = getState().postReducer.posts.find(post => post.id === id)!
+        dispatch(setPost({...detailPost, reaction, like, dislike}))
+    }
 }
-
-
 
 
 export const postsActionCreators = {

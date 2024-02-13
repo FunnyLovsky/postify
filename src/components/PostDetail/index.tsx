@@ -21,7 +21,7 @@ const PostDetail = () => {
     const dispacth = useAppDispatch()
 
     useEffect(() => {
-        fetchDetailPost(id!)
+        fetchDetailPost(+id!)
 
         return () => {
             dispacth(setIsLoading(true))

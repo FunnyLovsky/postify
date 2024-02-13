@@ -5,7 +5,7 @@ import { RoutesName } from '../../router/routes'
 
 interface IProps {
     type: 'next' | 'back'
-    id?: string
+    id?: number
 }
 
 const Button: FC<IProps> = ({ type, id }) => {

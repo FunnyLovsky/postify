@@ -1,22 +1,23 @@
-import { AppDispatch } from "../.."
+import { AppDispatch, RootState } from "../.."
 import { IPost } from "../../../models/IPost";
-import { generateUrlImage } from "../../../utils/generateUrlImage";
-import { getRandom } from "../../../utils/getRandom";
+
 import { PostsService } from "../../api/PostsService";
 import { setError, setIsLoading, setPost } from "./detailPostReducer";
 
-const fetchDetailPost = (id: string) => async (dispatch: AppDispatch) => {
+const fetchDetailPost = (id: number) => async (dispatch: AppDispatch, getState: () => RootState) => {
     try {
         const response: IPost[] = await PostsService.fetchDetailPost(id);
-        const post = response.map((item, index) => ({
+        const {dislike, like, reaction, img} = getState().postReducer.posts.find(post => post.id === id)!
+  
+        const detailPost = response.map((item) => ({
             ...item,
-            dislike: getRandom(0, 50),
-            like: getRandom(0, 50),
-            reaction: null,
-            img: generateUrlImage(item.title, index)
+            dislike,
+            like,
+            reaction,
+            img
         }));
         
-        dispatch(setPost(post[0]))
+        dispatch(setPost(detailPost[0]))
         await new Promise(res => setTimeout(() => res(''), 500))
         dispatch(setIsLoading(false))
     } catch (error: any) {

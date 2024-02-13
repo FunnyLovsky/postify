@@ -28,7 +28,6 @@ const detailPostsReducer = createSlice({
         setPost(state, action: PayloadAction<IPost>) {
             state.post = action.payload;
         },
-
     }
 })
 
