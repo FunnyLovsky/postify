@@ -16,4 +16,18 @@ export class PostsService {
             handleNetworkError(error.message);
         }
     }
+
+    static async fetchDetailPost(id: string) {
+        try {
+            const response = await fetch(`${URL_API}?id=${id}`);
+
+            if (response.ok) {
+                return await response.json()
+            }
+
+            throw new Error(`${response.status}`)
+        } catch (error: any) {
+            handleNetworkError(error.message);
+        }
+    }
 }

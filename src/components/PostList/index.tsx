@@ -1,27 +1,28 @@
 import styles from './style.module.scss'
 import Post from '../Post'
-import { useAppSelector } from '../../store/hooks'
+import { IPost } from '../../models/IPost'
+import { FC } from 'react'
 
-const PostList = () => {
-    const { posts, isLoading, error } = useAppSelector((state) => state.postReducer)
+interface IProps {
+    searchPosts: IPost[],
+}
 
-    if (isLoading) {
-        return <h1>Загрузка постов...</h1>
-    }
-
-    if(error) {
-        return <h1>{error}</h1>
-    }
+const PostList: FC<IProps> = ({searchPosts}) => {
 
     return (
         <div className={styles.list}>
-            {posts.map((post, index) => (
-                <Post
-                    key={post.id}
-                    post={post}
-                    type={index === 0 ? 'big' : 'small'}
-                />
-            ))}
+            {searchPosts.length === 0 
+                ? 
+                <h1>Ничего не найдено :(</h1>
+                :
+                searchPosts.map((post, index) => (
+                    <Post
+                        key={post.id}
+                        post={post}
+                        type={index === 0 ? 'big' : 'small'}
+                    />
+                ))
+            }
         </div>
     )
 }

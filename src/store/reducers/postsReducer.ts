@@ -8,9 +8,9 @@ interface PostsState {
 }
 
 const initialState: PostsState = {
-    isLoading: false,
+    isLoading: true,
     error: null,
-    posts: []
+    posts: [],
 }
 
 const postsReducer = createSlice({
@@ -62,5 +62,5 @@ const postsReducer = createSlice({
 })
 
 
-export const { setError, setIsLoading, setPosts, setReaction, setDislike, setLike} = postsReducer.actions
+export const { setError, setIsLoading, setPosts, setReaction, setDislike, setLike } = postsReducer.actions
 export default postsReducer.reducer

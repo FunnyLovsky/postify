@@ -7,7 +7,6 @@ import { setError, setIsLoading, setPosts, setDislike, setLike, setReaction } fr
 
 const fetchPosts = () => async (dispatch: AppDispatch) => {
     try {
-        dispatch(setIsLoading(true));
         const response: IPost[] = await PostsService.fetchPosts();
         const posts = response.map(item => ({
             ...item,
@@ -16,8 +15,9 @@ const fetchPosts = () => async (dispatch: AppDispatch) => {
             reaction: null,
             img: generateUrlImage(item.title)
         }));
-        await new Promise(res => setTimeout(() => res(''), 1000))
+        
         dispatch(setPosts(posts))
+        await new Promise(res => setTimeout(() => res(''), 1000))
         dispatch(setIsLoading(false))
     } catch (error: any) {
         dispatch(setIsLoading(false));
@@ -47,7 +47,10 @@ const onReactHandler = (type: TReact, id: string) => (dispatch: AppDispatch, get
     }
 }
 
+
+
+
 export const postsActionCreators = {
     fetchPosts,
-    onReactHandler
+    onReactHandler,
 }

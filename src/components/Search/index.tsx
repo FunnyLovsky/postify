@@ -2,11 +2,11 @@ import { FC } from 'react'
 import styles from './style.module.scss'
 
 interface IProps {
-    value?: string
-    onChange?: () => void
+    value: string,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const Search: FC<IProps> = ({ onChange, value }) => {
+const Search: FC<IProps> = ({onChange, value}) => {
     return (
         <input
             className={styles.input}
