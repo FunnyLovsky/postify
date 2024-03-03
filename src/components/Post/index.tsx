@@ -1,9 +1,10 @@
 import { FC } from 'react'
 import styles from './style.module.scss'
-import { IPost } from '../../models/IPost'
 import Button from '../Button'
 import Reactions from '../Reaction'
 import Image from '../ui/Image'
+import classNames from 'classnames'
+import { IPost } from '@/models/IPost'
 
 interface IProps {
     post: IPost
@@ -11,6 +12,8 @@ interface IProps {
 }
 
 const Post: FC<IProps> = ({ post, type }) => {
+    const postClass = classNames(styles[type], styles.post)
+
     const bigPost = (
         <div className={styles.cont}>
             <div className={styles.title}>
@@ -35,7 +38,7 @@ const Post: FC<IProps> = ({ post, type }) => {
     )
 
     return (
-        <div className={[styles[type], styles.post].join(' ')}>
+        <div className={postClass}>
             <Image type={type} img={post.img} />
             {type === 'big' ? bigPost : smallPost}
         </div>

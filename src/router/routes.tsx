@@ -1,5 +1,5 @@
-import Main from '../pages/Main'
-import Post from '../pages/Post'
+import Post from '@/pages/Post'
+import Main from '@/pages/Main'
 
 interface IRoute {
     path: RoutesName

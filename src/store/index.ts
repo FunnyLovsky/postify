@@ -1,15 +1,17 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import postReducer from "./reducers/posts/postsReducer";
-import detailPostReducer from "./reducers/detailPost/detailPostReducer";
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import postReducer from './reducers/posts/postsReducer'
+import detailPostReducer from './reducers/detailPost/detailPostReducer'
+import searchPostsReducer from './reducers/searchPosts/searchPostsReducer'
 
 const rootReducer = combineReducers({
     postReducer,
-    detailPostReducer
+    detailPostReducer,
+    searchPostsReducer,
 })
 
 export const setupStore = () => {
     return configureStore({
-        reducer: rootReducer
+        reducer: rootReducer,
     })
 }
 

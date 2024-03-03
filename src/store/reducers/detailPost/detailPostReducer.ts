@@ -1,36 +1,50 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IPost } from "../../../models/IPost";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { fetchDetailPost } from './actionCreators'
+import { IPost } from '@/models/IPost'
 
 interface DetailPostState {
-    isLoading: boolean,
-    error: null | string,
-    post: IPost,
+    isLoading: boolean
+    error: null | string
+    detailPost: IPost
 }
 
 const initialState: DetailPostState = {
     isLoading: true,
     error: null,
-    post: {} as IPost,
+    detailPost: {
+        title: '',
+        body: '',
+        img: '',
+        id: 0,
+        like: 0,
+        dislike: 0,
+        reaction: null,
+    },
 }
 
 const detailPostsReducer = createSlice({
-    name: "detailPost",
+    name: 'detailPost',
     initialState,
     reducers: {
-        setError(state, action: PayloadAction<string | null>) {
-            state.error = action.payload;
-        },
-
-        setIsLoading(state, action: PayloadAction<boolean>) {
-            state.isLoading = action.payload;
-        },
-
         setPost(state, action: PayloadAction<IPost>) {
-            state.post = action.payload;
+            state.detailPost = action.payload
         },
-    }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchDetailPost.pending, (state) => {
+            state.isLoading = true
+            state.error = null
+        })
+        builder.addCase(fetchDetailPost.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.detailPost = action.payload
+        })
+        builder.addCase(fetchDetailPost.rejected, (state, action) => {
+            state.isLoading = false
+            state.error = action.payload
+        })
+    },
 })
 
-
-export const { setError, setIsLoading, setPost } = detailPostsReducer.actions
+export const { setPost } = detailPostsReducer.actions
 export default detailPostsReducer.reducer

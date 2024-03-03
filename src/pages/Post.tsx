@@ -1,4 +1,4 @@
-import PostDetail from '../components/PostDetail'
+import PostDetail from '@/components/PostDetail'
 
 const Post = () => {
     return <PostDetail />

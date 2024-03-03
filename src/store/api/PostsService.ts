@@ -1,33 +1,28 @@
-import { handleNetworkError } from "../../utils/handleNetworkError";
-import { URL_API } from "./conts";
-
+import { handleNetworkError } from '@/utils/handleNetworkError'
+import { URL_API } from './conts'
 
 export class PostsService {
-    static async fetchPosts() {
+    static async fetch(url: string) {
         try {
-            const response = await fetch(`${URL_API}`);
-
+            const response = await fetch(url)
             if (response.ok) {
                 return await response.json()
             }
-
             throw new Error(`${response.status}`)
-        } catch (error: any) {
-            handleNetworkError(error.message);
+        } catch (error) {
+            handleNetworkError(error.message)
         }
     }
 
+    static async fetchPosts() {
+        return this.fetch(URL_API)
+    }
+
     static async fetchDetailPost(id: number) {
-        try {
-            const response = await fetch(`${URL_API}?id=${id}`);
+        return this.fetch(`${URL_API}?id=${id}`)
+    }
 
-            if (response.ok) {
-                return await response.json()
-            }
-
-            throw new Error(`${response.status}`)
-        } catch (error: any) {
-            handleNetworkError(error.message);
-        }
+    static async seacrhPosts(title: string) {
+        return this.fetch(`${URL_API}?title=${title}`)
     }
 }

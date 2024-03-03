@@ -1,3 +1,6 @@
+$like:#219653;
+$dislike: #eb5757;
+
 .cont {
     display: flex;
     align-items: center;
@@ -29,18 +32,27 @@
     }
 }
 
-.like {
+.like_item {
     margin-right: 15px;
 
     & svg {
         &:hover {
-            color: #219653;
+            color: $like;
         }
     }
 }
 
-.dislike svg {
+.dislike_item svg {
     &:hover {
-        color: #eb5757;
+        color: $dislike;
     }
 }
+
+#like {
+    color: $like
+}
+
+#dislike { 
+    color: $dislike;
+}
+

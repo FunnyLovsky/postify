@@ -1,19 +1,14 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from ".";
-import { bindActionCreators } from "@reduxjs/toolkit";
-import { postsActionCreators } from "./reducers/posts/actionCreators";
-import { detailPostActionCreators } from "./reducers/detailPost/actionCreators";
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '.'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
+type ThunkApiConfig = {
+    state: RootState
+    dispatch: AppDispatch
+    rejectValue: string
+    extra: string
+}
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-
-const allActionCreators = {
-    ...postsActionCreators,
-    ...detailPostActionCreators
-}
-
-export const useActions = () => {
-    const dispatch = useDispatch()
-    return bindActionCreators(allActionCreators, dispatch)
-}
+export const createAppAsyncThunk = createAsyncThunk.withTypes<ThunkApiConfig>()

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styles from './style.module.scss'
 import { NavLink } from 'react-router-dom'
-import { RoutesName } from '../../router/routes'
+import { RoutesName } from '@/router/routes'
 
 interface IProps {
     type: 'next' | 'back'
@@ -15,10 +15,7 @@ const Button: FC<IProps> = ({ type, id }) => {
 
     const component =
         type === 'next' ? (
-            <NavLink
-                to={`${RoutesName.MAIN}post/${id}`}
-                className={styles[type]}
-            >
+            <NavLink to={`${RoutesName.MAIN}post/${id}`} className={styles[type]}>
                 Читать далее
             </NavLink>
         ) : (

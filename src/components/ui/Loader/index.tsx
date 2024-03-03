@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const Loader: FC<IProps> = ({ type }) => {
-    const loader = 
+    const loader =
         type === 'big' ? (
             <div className={styles.cont}>
                 <span className={styles[type]}></span>

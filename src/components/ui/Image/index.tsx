@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
 import styles from './style.module.scss'
+import classNames from 'classnames'
 
 interface IProps {
     img: string
@@ -8,13 +9,11 @@ interface IProps {
 
 const Image: FC<IProps> = ({ img, type }) => {
     const [load, setLoad] = useState(false)
+    const imgClass = classNames(styles.cont, styles[type])
 
     return (
-        <div className={[styles.cont, styles[type]].join(' ')}>
-            <div
-                className={styles.loader}
-                style={{ display: load ? 'none' : 'block' }}
-            ></div>
+        <div className={imgClass}>
+            <div className={styles.loader} style={{ display: load ? 'none' : 'block' }}></div>
             <img
                 className={styles.img}
                 src={img}

@@ -1,26 +1,38 @@
 import styles from './style.module.scss'
 import Post from '../Post'
-import { IPost } from '../../models/IPost'
 import { FC } from 'react'
+import { IPost } from '@/models/IPost'
 
 interface IProps {
     searchPosts: IPost[]
 }
 
 const PostList: FC<IProps> = ({ searchPosts }) => {
+    if (searchPosts.length === 0) {
+        return <h1>Ничего не найдено :(</h1>
+    }
+
+    const bigPost = searchPosts[0]
+    const otherPosts = searchPosts.slice(1)
+    const halfLength = Math.ceil(otherPosts.length / 2)
+    const leftColumn = otherPosts.slice(0, halfLength)
+    const rightColumn = otherPosts.slice(halfLength)
+
     return (
         <div className={styles.list}>
-            {searchPosts.length === 0 ? (
-                <h1>Ничего не найдено :(</h1>
-            ) : (
-                searchPosts.map((post, index) => (
-                    <Post
-                        key={post.id}
-                        post={post}
-                        type={index === 0 ? 'big' : 'small'}
-                    />
-                ))
-            )}
+            <Post post={bigPost} type="big" />
+            <div className={styles.list}>
+                <div className={styles.column}>
+                    {leftColumn.map((post) => (
+                        <Post key={post.id} post={post} type="small" />
+                    ))}
+                </div>
+                <div className={styles.column}>
+                    {rightColumn.map((post) => (
+                        <Post key={post.id} post={post} type="small" />
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }
