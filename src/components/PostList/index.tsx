@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const PostList: FC<IProps> = ({ searchPosts }) => {
-    if (searchPosts.length === 0) {
+    if (!searchPosts || searchPosts.length === 0) {
         return <h1>Ничего не найдено :(</h1>
     }
 

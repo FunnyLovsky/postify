@@ -13,18 +13,19 @@ const Button: FC<IProps> = ({ type, id }) => {
         window.history.back()
     }
 
-    const component =
-        type === 'next' ? (
-            <NavLink to={`${RoutesName.MAIN}post/${id}`} className={styles[type]}>
-                Читать далее
-            </NavLink>
-        ) : (
-            <button className={styles[type]} onClick={handleClick}>
-                Вернуться к статьям
-            </button>
-        )
+    const nextBtn = (
+        <NavLink to={`${RoutesName.MAIN}post/${id}`} className={styles[type]}>
+            Читать далее
+        </NavLink>
+    )
 
-    return component
+    const backBtn = (
+        <button className={styles[type]} onClick={handleClick}>
+            Вернуться к статьям
+        </button>
+    )
+
+    return type === 'next' ? nextBtn : backBtn
 }
 
 export default Button
